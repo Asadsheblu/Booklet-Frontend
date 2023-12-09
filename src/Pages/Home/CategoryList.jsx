@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 const CategoryList = () => {
   return (
     <div className="container mx-auto">
       <div className="grid  md:grid-cols-5 sm:grid-cols-2 gap-3 ">
         <div>
           <button className=" btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">
-            ব্যাবসা ও অর্থনীতি
+           <Link to="/popular">Popular</Link>
           </button>
         </div>
 
