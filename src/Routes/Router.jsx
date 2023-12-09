@@ -3,7 +3,7 @@ import {
   } from "react-router-dom";
 import Main from "../Layout/main";
 import Home from "../Pages/Home/Home";
-import Popular from "../Pages/Products/Category/Popular";
+import AllProduct from "../Pages/Products/Category/AllProduct";
  export const router = createBrowserRouter([
     {
       path: "/",
@@ -15,8 +15,8 @@ import Popular from "../Pages/Products/Category/Popular";
             element:<Home/>
         },
         {
-            path:"/popular",
-            element:<Popular/>
+            path:"/products",
+            element:<AllProduct/>
         },
         
       ]

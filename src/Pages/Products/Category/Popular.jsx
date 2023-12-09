@@ -1,11 +1,12 @@
 // import { useEffect, useState } from "react";
 
-import useCategory from "../../../hooks/useCategory";
+
+import useProduct from "../../../hooks/useProduct";
 
 
 const Popular = () => {
-  const [category]=useCategory();
-  const popular=category.filter(item=>item.title==="Popular");
+  const [products]=useProduct();
+  const popular=products.filter(item=>item.title==="Popular");
     // const [populars,setPopulars]=useState([])
     // useEffect(()=>{
     //     fetch("https://nextcommerce1backend.onrender.com/product")
@@ -19,7 +20,7 @@ const Popular = () => {
     return (
         <div className="container mx-auto pt-16">
            <h6 className="font-bold flex text-2xl">Popular </h6>
-           <div className="grid  md:grid-cols-4 sm:grid-cols-1 gap-3">
+           <div className="grid  md:grid-cols-5 sm:grid-cols-1 gap-3">
           
             {
                 popular.map(item=><>

@@ -15,7 +15,8 @@
     "react-helmet-async": "^2.0.3",
     "react-icons": "^4.12.0",
     "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^6.20.1"
+    "react-router-dom": "^6.20.1",
+    "react-tabs": "^6.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
