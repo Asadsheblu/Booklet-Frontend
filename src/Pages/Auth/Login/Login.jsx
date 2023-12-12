@@ -1,22 +1,36 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from '../../../Provider/AuthProvider';
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
+
+
 const Login = () => {
     const [disbale,setDisable]=useState(true)
-    const captchaRef=useRef(null)
+    
+    const {SignIn}=useContext(AuthContext)
     useEffect(()=>{
         loadCaptchaEnginge(6); 
     },[])
-    const handaleLogin=(e)=>{
+    const handleLogin=(e)=>{
         e.preventDefault()
         const form=e.target;
         const email=form.email.value
         const password=form.password.value
         const data={email,password}
         console.log(data);
+        SignIn(email,password)
+       .then(result=>{
+        const user=result.user;
+        console.log(user);
+        Swal.fire("User is Login");
+       })
 
     }
-    const handelValidateCaptcha=()=>{
-        const captchaValue=captchaRef.current.value;
+    const handelValidateCaptcha=(e)=>{
+        const captchaValue=e.target.value;
+        console.log(captchaValue);
         if (validateCaptcha(captchaValue)==true) {
             setDisable(false)
         }
@@ -30,7 +44,7 @@ const Login = () => {
     return (
         <div className="container mx-auto">
             <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-      <form onSubmit={handaleLogin} className="card-body">
+      <form onSubmit={handleLogin} className="card-body">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
@@ -48,12 +62,13 @@ const Login = () => {
           <label className="label">
           <LoadCanvasTemplate />
           </label>
-          <input type="text" ref={captchaRef} name="captcha" placeholder="captcha" className="input input-bordered" required />
-          <button onClick={handelValidateCaptcha}  className="btn btn-outline btn-info mt-2">Validated</button>
+          <input type="text" onBlur={handelValidateCaptcha}  name="captcha" placeholder="captcha" className="input input-bordered" required />
+         
         </div>
         <div className="form-control mt-6">
         
           <button disabled={disbale} className="btn btn-primary">Login</button>
+         <p>Are You New User?<Link className='text-cyan-500' to="/signUp">Create An Account</Link></p> 
         </div>
       </form>
     </div>
