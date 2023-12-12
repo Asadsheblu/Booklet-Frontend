@@ -65,7 +65,16 @@ const Navbar = () => {
       <div className="navbar-end">
         <Link className="btn"><FaCartPlus/></Link>
         {
-          user?<><button onClick={handleLogout} className="btn border-t-indigo-500 text-xl text-orange-400">logOut</button></>:<> <Link to="/login" className="btn border-t-indigo-500 text-xl text-orange-400">Login</Link></>
+          
+          user?<>
+          <div className="avatar">
+  <div className="w-10 rounded-full">
+    <img src={user?.photoURL} />
+  </div>
+</div>
+          <button onClick={handleLogout} className="btn border-t-indigo-500 text-xl text-orange-400">logOut</button></>
+          :
+          <> <Link to="/login" className="btn border-t-indigo-500 text-xl text-orange-400">Login</Link></>
         }
      
       

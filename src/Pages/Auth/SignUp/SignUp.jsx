@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 
 const SignUp = () => {
-  const {createUser} = useContext(AuthContext);
-
+  const {createUser,userUpdate} = useContext(AuthContext);
+const navigate=useNavigate()
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -14,11 +16,20 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const contact = form.contact.value;
-
+    const profile_url = form.profile_url.value;
+    const data={userName,email, password,contact,profile_url}
+    console.log(data);
     createUser(email, password)
     .then(result=>{
         const user=result.user;
         console.log(user);
+        userUpdate(userName,profile_url)
+        .then(()=>{
+            console.log("user info updated");
+            Swal.fire("Profile is Updated");
+            window.location.reload()
+        })
+        navigate('/')
        })
   };
 
@@ -71,6 +82,18 @@ const SignUp = () => {
                 type="number"
                 name="contact"
                 placeholder="Contact No"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Add profile</span>
+              </label>
+              <input
+                type="text"
+                name="profile_url"
+                placeholder="profile url"
                 className="input input-bordered"
                 required
               />

@@ -1,14 +1,16 @@
 import { useContext, useEffect, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 
 
 const Login = () => {
     const [disbale,setDisable]=useState(true)
-    
+    const navigate=useNavigate();
+    const location=useLocation();
+  const from = location.state?.from?.pathname || "/";
     const {SignIn}=useContext(AuthContext)
     useEffect(()=>{
         loadCaptchaEnginge(6); 
@@ -25,7 +27,9 @@ const Login = () => {
         const user=result.user;
         console.log(user);
         Swal.fire("User is Login");
-       })
+        
+       });
+       navigate(from, { replace: true });
 
     }
     const handelValidateCaptcha=(e)=>{
