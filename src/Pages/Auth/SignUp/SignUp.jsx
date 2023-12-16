@@ -25,9 +25,23 @@ const navigate=useNavigate()
         console.log(user);
         userUpdate(userName,profile_url)
         .then(()=>{
-            console.log("user info updated");
-            Swal.fire("Profile is Updated");
-            window.location.reload()
+          const saveUser={name:data.userName,email: data.email}
+           fetch("http://localhost:5000/users",
+           {
+            method:"POST",
+            headers:{
+              "content-type":"application/json"
+            },
+            body:JSON.stringify(saveUser)
+           })
+           .then(res=>res.json())
+           .then(data=>{
+            if(data.insertedId){
+          Swal.fire("Profile is Updated");
+            window.location.reload()  
+            }
+           })
+            
         })
         navigate('/')
        })

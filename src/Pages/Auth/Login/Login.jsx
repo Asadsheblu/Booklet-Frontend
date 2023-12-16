@@ -3,6 +3,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../../Routes/Shared/SocialLogin/SocialLogin';
 
 
 
@@ -73,8 +74,10 @@ const Login = () => {
         
           <button disabled={disbale} className="btn btn-primary">Login</button>
          <p>Are You New User?<Link className='text-cyan-500' to="/signUp">Create An Account</Link></p> 
+        
         </div>
       </form>
+      <SocialLogin/>
     </div>
         </div>
     );
