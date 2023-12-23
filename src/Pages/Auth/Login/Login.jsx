@@ -27,10 +27,18 @@ const Login = () => {
        .then(result=>{
         const user=result.user;
         console.log(user);
-        Swal.fire("User is Login");
+        if(result){
+          navigate("/");
+          Swal.fire("User is Login");
+        }
+     else{
+      Swal.fire("Please Create an Account");
+
+     }
         
        });
-       navigate(from, { replace: true });
+       
+     
 
     }
     const handelValidateCaptcha=(e)=>{

@@ -63,8 +63,8 @@ const ProductCard = ({item}) => {
 <div className="card  bg-base-100 shadow-xl">
   <figure><img src={img} alt="Shoes" /></figure>
   <div className="card-body">
-    <h6 className="card-title">{name}</h6>
-    <p>{category}</p>
+    <small className="font-bold">{name}</small>
+    <small>{category}</small>
     <h6>{price}</h6>
     <div className="card-actions justify-end">
       <button onClick={()=>handelAddToCart(item)} className="btn btn-primary">Add To Cart</button>
